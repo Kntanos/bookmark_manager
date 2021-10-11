@@ -11,6 +11,7 @@ gem 'sinatra-contrib'
 gem 'rspec'
 gem 'rspec-sinatra'
 gem 'capybara'
+gem 'pg'
 
 group :development, :test do
   gem "rubocop"
