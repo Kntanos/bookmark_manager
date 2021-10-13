@@ -4,7 +4,7 @@ require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
-   configure :development do
+    configure :development do
     register Sinatra::Reloader
   end
 
@@ -20,6 +20,16 @@ class BookmarkManager < Sinatra::Base
 
   delete '/bookmarks/:id' do
     Bookmark.delete(id: params[:id])
+    redirect :'bookmarks'
+  end
+
+  get '/bookmarks/:id/edit' do
+    @bookmark = Bookmark.find(id: params[:id])
+    erb :'bookmarks/edit'
+  end
+
+  patch '/bookmarks/:id' do
+    Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
     redirect :'bookmarks'
   end
 
