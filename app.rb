@@ -8,19 +8,23 @@ class BookmarkManager < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  # before '/*/' do
+  #   redirect request.path_info.chomp('/')
+  # end
+
   get '/bookmarks' do
     @bookmarks = Bookmark.all  
-    erb :'bookmarks/index'
+    erb :'/bookmarks/index'
   end
 
   post '/bookmarks' do
     Bookmark.create(url: params[:url], title: params[:title])
-    redirect :'bookmarks'
+    redirect :'/bookmarks'
   end
 
   delete '/bookmarks/:id' do
     Bookmark.delete(id: params[:id])
-    redirect :'bookmarks'
+    redirect :'/bookmarks'
   end
 
   get '/bookmarks/:id/edit' do
@@ -28,14 +32,14 @@ class BookmarkManager < Sinatra::Base
     erb :'bookmarks/edit'
   end
 
+  # get '/bookmarks/:id/edit' do
+  #   @bookmark = Bookmark.find(id: params[:id])
+  #   erb :'/bookmarks/edit'
+  # end
+
   patch '/bookmarks/:id' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-    connection.exec_params(
-      "UPDATE bookmarks SET url = $1, title = $2 WHERE id = $3",
-      [ params[:url], params[:title], params[:id] ]
-    )
-  
-    redirect('/bookmarks')
+    Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
+    redirect :'/bookmarks'
   end
 
   run! if app_file == $0
