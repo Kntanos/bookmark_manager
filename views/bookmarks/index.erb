@@ -1,14 +1,21 @@
 <h1>Bookmark Manager</h1>
 <div class="">
+<ul>
   <% @bookmarks.each do |bookmark| %>
-    <p><%= bookmark %></p>
+    <li>
+      <a href="<%= bookmark.url %>">
+        <%= bookmark.title %>
+      </a>
+    </li>
   <% end %>
+</ul>
 </div>
 <br><br>
 
 <h5>Add a new bookmark</h5>
 
 <form action='/bookmarks' method='post'>
-<input type='text' name='new_url'>
-<input type='submit' name='button' value='Add'>
+<input type='text' name='url' placeholder='URL'/>
+<input type='text' name='title' placeholder='Title'>
+<input type='submit' name='button' value='Add'/>
 </form>
