@@ -1,10 +1,17 @@
 require 'pg'
+require 'launchy'
 
-feature 'Delete bookmarks' do
+feature 'Deleting bookmarks' do
 
-  xscenario 'a user can delete bookmarks' do
-    visit('/bookmarks/index')
-    click_button 'Delete'
-    expect(page).to not_have_content "www.some.com"
+  scenario 'A user can delete a bookmark' do
+    Bookmark.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    visit('/bookmarks')
+    # save_and_open_page
+    expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
+
+    first('.bookmark').click_button 'Delete'
+
+    expect(current_path).to eq '/bookmarks'
+    expect(page).not_to have_link('Makers Academy', href: 'http://www.makersacademy.com')
   end
 end

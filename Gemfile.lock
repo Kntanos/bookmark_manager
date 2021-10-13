@@ -15,10 +15,14 @@ GEM
     diff-lcs (1.4.4)
     extlib (0.9.16)
     highline (2.0.3)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     mini_mime (1.1.2)
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    nokogiri (1.12.5-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.12.5-x64-mingw32)
       racc (~> 1.4)
     parallel (1.21.0)
@@ -89,6 +93,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  launchy
   pg
   rspec
   rspec-sinatra

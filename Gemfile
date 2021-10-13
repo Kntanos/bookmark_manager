@@ -12,6 +12,7 @@ gem 'rspec'
 gem 'rspec-sinatra'
 gem 'capybara'
 gem 'pg'
+gem 'launchy'
 
 group :development, :test do
   gem "rubocop"

@@ -1,16 +1,14 @@
 <h1>Bookmark Manager</h1>
   <ul>
-  <% @bookmarks.each do |bookmark| %>
-    <li class='bookmark' id="bookmark-<%= bookmark.id %>">
-      <a href="<%= bookmark.url %>" target="_blank">
-        <%= bookmark.title %>
+    <li class='bookmark' id='bookmark-334'>
+      <a href="http://www.makersacademy.com target='blank">
+        Makers Academy
       </a>
-      <form action="/bookmarks/<%= bookmark.id %>" method="post">
+      <form action="/bookmarks/334" method="post">
         <input type='hidden' name='_method' value='DELETE'/>
         <input type="submit" value="Delete" />
       </form>
     </li>
-  <% end %>
 </ul>
 </div>
 <br><br>
