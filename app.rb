@@ -7,10 +7,6 @@ class BookmarkManager < Sinatra::Base
     configure :development do
     register Sinatra::Reloader
   end
- 
-  # before '/*/' do
-  #   redirect request.path_info.chomp('/')
-  # end
 
   get '/bookmarks' do
     @bookmarks = Bookmark.all  
@@ -27,12 +23,13 @@ class BookmarkManager < Sinatra::Base
     redirect :'/bookmarks'
   end
 
+  # get '/bookmarks/:id/edit' do
+  #   @bookmark_id = params[:id]
+  #   erb :'/bookmarks/edit'
+  # end
+
   get '/bookmarks/:id/edit' do
     @bookmark_id = params[:id]
-    erb :'/bookmarks/edit'
-  end
-
-  post '/bookmarks/:id/edit' do
     @bookmark = Bookmark.find(id: params[:id])
     erb :'/bookmarks/edit'
   end
